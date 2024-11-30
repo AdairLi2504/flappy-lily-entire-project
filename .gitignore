@@ -1,0 +1,6 @@
+/preAsset
+script/**/Include
+script/**/Lib
+script/**/Scripts
+script/**/pyvenv.cfg
+debug.log
