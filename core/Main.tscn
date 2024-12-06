@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://LilyWhite.tscn" type="PackedScene" id=4]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+obstalce_scene = ExtResource( 2 )
+ground_scene = ExtResource( 3 )
+
+[node name="LilyWhite" parent="." instance=ExtResource( 4 )]
+
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 3.5
+
+[connection signal="child_exiting_tree" from="." to="." method="terrain_go_out_window"]
