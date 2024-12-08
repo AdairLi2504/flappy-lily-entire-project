@@ -1,6 +1,9 @@
 /preAsset
 script/**/Include
+script/**/lib64
 script/**/Lib
+script/**/Lib/*
 script/**/Scripts
+script/**/bin
 script/**/pyvenv.cfg
 debug.log
