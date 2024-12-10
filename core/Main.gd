@@ -3,19 +3,29 @@ extends Node
 export(PackedScene) var obstalce_scene
 export(PackedScene) var ground_scene
 
+var score := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	new_game()
+	$LilyWhite.sleeping = true
+	$LilyWhite.hide()
 
 func new_game():
+	score = 0
+	$ScoreDisplay/Label.text = str(0)
+	$LilyWhite.position = $StartPosition.position
+	$LilyWhite/Area2D.rotation_degrees = 0
+	$LilyWhite.onGame = true
+	$LilyWhite.gameEnd = false
+	get_tree().call_group("obstacles","queue_free")
+	get_tree().call_group("grounds","queue_free")
 	for i in range(4):
 		gen_ground(i*280)
 	gen_obstalce(1120)
 	$ScoreTimer.start()
+	$LilyWhite.set_deferred("sleeping",false)
+	$LilyWhite/Area2D/CollisionShape2D.disabled = false
 	$LilyWhite.show()
-	$LilyWhite.position.x = 360
-	$LilyWhite.position.y = 540
 	$LilyWhite.onGame = true
 	
 func gen_ground(pos_x:int):
@@ -44,3 +54,15 @@ func terrain_go_out_window(node):
 	else:
 		lastNode = childernObstacle[len(childernObstacle)-1]
 	gen_obstalce(lastNode.position.x+280)
+
+
+func _on_LilyWhite_end_game():
+	$ScoreTimer.stop()
+	$HUD/Button.text = "try again"
+	$HUD/score.text = "your last score : "+str(score)
+	$HUD.show()
+
+
+func _on_ScoreTimer_timeout():
+	score += 1
+	$ScoreDisplay/Label.text = str(score)

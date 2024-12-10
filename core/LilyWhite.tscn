@@ -24,7 +24,6 @@ script = ExtResource( 8 )
 [node name="leg" type="Sprite" parent="Area2D"]
 position = Vector2( 5, 51 )
 rotation = 0.349066
-scale = Vector2( 1, 1 )
 texture = ExtResource( 10 )
 
 [node name="mainBody" type="AnimatedSprite" parent="Area2D"]

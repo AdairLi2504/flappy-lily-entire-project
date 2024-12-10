@@ -1,6 +1,5 @@
 extends RigidBody2D
 
-signal collision
 signal end_game
 # Declare member variables here. Examples:
 # var a = 2
@@ -8,6 +7,7 @@ signal end_game
 
 var onGame := false
 var isUp := false
+var gameEnd := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,12 +43,15 @@ func _process(delta):
 	else:
 		if $Area2D.rotation_degrees > -90:
 			$Area2D.rotate(-0.10*PI*delta)
-	if position.y > 1000:
+	if position.y > 1000 and !gameEnd:
+		emit_signal("end_game")
+		gameEnd = true
 		hide()
+		position.y = 100
+		set_deferred("sleeping",true)
 
 
 func _on_Area2D_area_entered(area):
 	onGame = false
 	change_stauts(3)
-	emit_signal("collision")
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
