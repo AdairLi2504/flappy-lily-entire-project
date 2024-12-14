@@ -13,7 +13,7 @@ height = 68.0
 extents = Vector2( 13.5, 473.07 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 140, 244 )
+extents = Vector2( 140, 349 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 15.75, 475 )
@@ -29,7 +29,7 @@ script = ExtResource( 4 )
 position = Vector2( 0, 940 )
 
 [node name="ground" type="Sprite" parent="down"]
-position = Vector2( 140, 210 )
+position = Vector2( 140, 315 )
 z_index = 200
 texture = ExtResource( 2 )
 
@@ -48,7 +48,7 @@ position = Vector2( 35, 225 )
 shape = SubResource( 2 )
 
 [node name="groundCS2" type="CollisionShape2D" parent="down"]
-position = Vector2( 140, 245 )
+position = Vector2( 140, 350 )
 shape = SubResource( 3 )
 
 [node name="up" type="Area2D" parent="."]
@@ -68,6 +68,7 @@ rotation = 1.5708
 shape = SubResource( 5 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, 1 )
 rect = Rect2( 0, 0, 280, 1080 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

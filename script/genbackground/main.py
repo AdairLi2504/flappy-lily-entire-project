@@ -11,12 +11,12 @@ def addGround(base: Image.Image) -> Image.Image:
     grassCentre = Image.open("./grassCenter.png")
     for i in range(0,11):
         base.paste(grassMid,(i*70,940))
-        for j in range(0,6):
+        for j in range(0,9):
             base.paste(grassCentre,(i*70,1010+j*70))
     return base
 
 
-entireBackground = Image.new("RGB",(720,1360),color=(207,239,252))
+entireBackground = Image.new("RGB",(720,1640),color=(207,239,252))
 entireBackground = addBackground(entireBackground)
 entireBackground = addGround(entireBackground)
 entireBackground.save("background.png")
