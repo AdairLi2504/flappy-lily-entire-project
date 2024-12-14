@@ -17,6 +17,7 @@ func new_game():
 	$LilyWhite/Area2D.rotation_degrees = 0
 	$LilyWhite.onGame = true
 	$LilyWhite.gameEnd = false
+	$LilyWhite/Area2D/mainBody.play()
 	get_tree().call_group("obstacles","queue_free")
 	get_tree().call_group("grounds","queue_free")
 	for i in range(4):
