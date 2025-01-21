@@ -4,7 +4,9 @@ script/**/lib64
 script/**/Lib
 script/**/Lib/*
 script/**/Scripts
-script/**/bin
+script/**/bin/*
+script/**/lib/*
+script/**/include/*
 script/**/pyvenv.cfg
 debug.log
 *.kra~

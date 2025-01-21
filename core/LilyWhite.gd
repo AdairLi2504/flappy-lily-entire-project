@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 signal end_game
+signal collision_happened
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -55,3 +56,5 @@ func _on_Area2D_area_entered(area):
 	onGame = false
 	change_stauts(3)
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	emit_signal("collision_happened")
+	$hitSound.play()

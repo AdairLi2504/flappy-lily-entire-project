@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://asset/hit.ogg" type="AudioStream" id=1]
 [ext_resource path="res://LilyWhite.gd" type="Script" id=8]
 [ext_resource path="res://asset/lilyWhite/fly_02.png" type="Texture" id=9]
 [ext_resource path="res://asset/lilyWhite/leg.png" type="Texture" id=10]
@@ -34,5 +35,8 @@ offset = Vector2( -1.245, 0 )
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
 rotation = -2.89551
 polygon = PoolVector2Array( -22.3071, 5.60315, -52.4419, -48.6913, -8.54947, -54.561, 26.3843, -46.8388, 17.4485, -12.6313, 4.88607, 31.7667, 4.17357, 45.3495, -5.76876, 46.8158, -35.3522, 52.1845 )
+
+[node name="hitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

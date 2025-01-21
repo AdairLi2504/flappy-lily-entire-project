@@ -4,6 +4,8 @@ export(PackedScene) var obstalce_scene
 export(PackedScene) var ground_scene
 
 var score := 0
+var mute := false
+var mutePressed := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +29,7 @@ func new_game():
 	$LilyWhite.set_deferred("sleeping",false)
 	$LilyWhite/Area2D/CollisionShape2D.disabled = false
 	$LilyWhite.show()
+	$Music.play()
 	$LilyWhite.onGame = true
 	
 func gen_ground(pos_x:int):
@@ -67,3 +70,28 @@ func _on_LilyWhite_end_game():
 func _on_ScoreTimer_timeout():
 	score += 1
 	$ScoreDisplay/Label.text = str(score)
+
+
+func _on_LilyWhite_collision_happened():
+	$Music.stop()
+
+func _on_MuteButton_pressed():
+	$Mute/MuteButton.release_focus()
+	if !mute :
+		$Mute/MuteButton.texture_normal = load("res://asset/mute.png")
+	else:
+		$Mute/MuteButton.texture_normal = load("res://asset/cancelMute.png")
+	if mute == true :
+		mute = false
+		var bus_idx = AudioServer.get_bus_index("Master")
+		AudioServer.set_bus_mute(bus_idx, mute)
+		mutePressed = true
+	$Mute/kickSound.play()
+	
+
+func _on_kickSound_finished():
+	if mute == false && mutePressed == false:
+		mute = true
+		var bus_idx = AudioServer.get_bus_index("Master")
+		AudioServer.set_bus_mute(bus_idx, mute)
+	mutePressed = false
